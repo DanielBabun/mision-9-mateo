@@ -187,6 +187,24 @@ h1 .nombre .carton{--ct:var(--amarillo)}
 .fotos .palito .foto-p{animation:none;width:clamp(200px,22vw,260px)}
 .fotos .palito .foto-p img{aspect-ratio:3/4;object-position:50% 30%}
 
+/* ---------- Formulario de confirmación ---------- */
+.rsvp{width:100%;max-width:34rem;display:grid;gap:14px;text-align:left;background:var(--papel);color:var(--tinta);padding:clamp(18px,3.5vw,28px);filter:var(--sombra);clip-path:polygon(0 1%,99% 0,100% 98%,1% 100%);transform:rotate(-.6deg)}
+.rsvp label{display:grid;gap:6px;font-weight:900;font-size:var(--fs-label)}
+.rsvp input,.rsvp textarea{font:inherit;font-weight:700;font-size:16px;color:var(--tinta);background:#fff;border:2.5px solid var(--tinta);border-radius:4px;padding:10px 12px;width:100%}
+.rsvp textarea{min-height:84px;resize:vertical}
+.rsvp .dos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rsvp fieldset{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.rsvp legend{font-weight:900;font-size:var(--fs-label);margin-bottom:6px}
+.rsvp .opcion input{position:absolute;opacity:0;pointer-events:none}
+.rsvp .opcion span{display:inline-block;padding:10px 18px;font-weight:900;background:var(--papel2);border:2.5px solid var(--tinta);cursor:pointer;clip-path:polygon(2% 0,100% 5%,98% 100%,0 94%)}
+.rsvp .opcion input:checked + span{background:var(--amarillo)}
+.rsvp .opcion input:focus-visible + span{outline:3px solid var(--rojo);outline-offset:2px}
+.rsvp .btn{justify-self:start}
+.rsvp [data-rsvp-aviso]{font-weight:800;color:var(--rojo);min-height:1.5em}
+.rsvp.rsvp-enviado [data-rsvp-aviso]{color:var(--cielo3)}
+.trampa{position:absolute;left:-9999px}
+.alterno{font-size:var(--fs-label)}
+
 @media (min-width:860px){
   .portada-grid{grid-template-columns:1.05fr 1fr}
   .portada-txt{justify-items:start;text-align:left}
@@ -444,9 +462,25 @@ h1 .nombre .carton{--ct:var(--amarillo)}
     <span class="etiqueta">Confirma tu lugar</span>
     <h2>¿Vienes <span class="carton">a bordo</span>?</h2>
     <p>Avísanos antes del 28 de noviembre para guardarte un asiento en el cohete.</p>
+    <form class="rsvp" data-rsvp="mision-9-mateo" data-rsvp-si="¡Listo, ya tienes asiento en el cohete! 🚀" data-rsvp-no="Gracias por avisar. ¡Te vamos a extrañar en la misión!">
+      <label>Tu nombre<input name="nombre" required autocomplete="name" placeholder="Nombre y apellido"></label>
+      <fieldset><legend>¿Vienen?</legend>
+        <label class="opcion"><input type="radio" name="asiste" value="si" checked><span>¡Sí, vamos!</span></label>
+        <label class="opcion"><input type="radio" name="asiste" value="no"><span>No podemos</span></label>
+      </fieldset>
+      <div class="dos">
+        <label>¿Cuántos van?<input name="personas" type="number" min="1" max="20" value="2" inputmode="numeric"></label>
+        <label>Teléfono<input name="telefono" type="tel" autocomplete="tel" placeholder="Opcional"></label>
+      </div>
+      <label>Mensaje para Mateo<textarea name="mensaje" placeholder="Opcional"></textarea></label>
+      <input class="trampa" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn" type="submit">Confirmar asistencia</button>
+      <p data-rsvp-aviso role="status"></p>
+    </form>
+    <p class="alterno">¿Prefieres escribirnos?</p>
     <p class="tel" id="tel">+504 9999-9999</p>
     <div class="acciones">
-      <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+      <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
       <button class="btn rojo" type="button" id="copiar">Copiar número</button>
     </div>
     <p class="aviso" id="aviso" role="status"></p>
@@ -525,3 +559,4 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && par.length) {
   mover();
 }
 </script>
+<script src="https://invitaciones-rsvp.vercel.app/rsvp.js" defer></script>

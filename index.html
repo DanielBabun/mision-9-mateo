@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Mateo cumple 9: prepárate para despegar.">
+<title>Misión 9 de Mateo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@600;800;900&display=swap">
+<style>
+/* Capas de papel recortado sobre un cielo de cartulina: cada pieza flota con su sombra; secciones separadas por bordes rasgados. Un solo mundo (noche), a propósito. */
+:root{
+  --cielo:#16204A; --cielo2:#22306B; --cielo3:#33479A; --cielo4:#4C66C2;
+  --papel:#F5ECDC; --papel2:#E8DCC6;
+  --rojo:#E5533D; --naranja:#F39A3D; --amarillo:#F7CB4D; --menta:#5EC4A8; --lila:#9B86E0;
+  --tinta:#16204A;
+  --display:"Bungee", "Arial Black", Impact, sans-serif;
+  --texto:"Nunito", "Avenir Next", system-ui, sans-serif;
+  --fs-base:clamp(17px, .95rem + .35vw, 20px);
+  --fs-label:clamp(16px, .85rem + .25vw, 18px);
+  --fs-h2:clamp(32px, 1.4rem + 3vw, 60px);
+  --gutter:clamp(16px, 5vw, 64px);
+  --sombra:drop-shadow(0 2px 0 rgba(8,12,35,.35)) drop-shadow(0 10px 14px rgba(8,12,35,.38));
+  --sombra-s:drop-shadow(0 1.5px 0 rgba(8,12,35,.3)) drop-shadow(0 5px 7px rgba(8,12,35,.3));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cielo);color:var(--papel);font-family:var(--texto);font-weight:600;font-size:var(--fs-base);line-height:1.55;overflow-x:hidden}
+img,svg{max-width:100%}
+/* grano de cartulina sobre toda la página */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.38;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.capa{filter:var(--sombra)}
+.capa-s{filter:var(--sombra-s)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1;text-wrap:balance}
+p{margin:0}
+.etiqueta{display:inline-block;font-family:var(--texto);font-weight:900;font-size:var(--fs-label);letter-spacing:.18em;text-transform:uppercase;color:var(--tinta);background:var(--amarillo);padding:.35em .9em;transform:rotate(-2deg);filter:var(--sombra-s);clip-path:polygon(2% 8%,98% 0,100% 88%,4% 100%)}
+
+/* ---------- Portada ---------- */
+.portada{position:relative;min-height:min(100svh,1000px);display:grid;align-items:center;padding:clamp(48px,8vh,90px) var(--gutter) clamp(150px,22vw,260px);overflow:hidden;isolation:isolate}
+.portada .cielo-art{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.portada-grid{display:grid;gap:clamp(18px,3vw,40px);align-items:center;max-width:72rem;margin:0 auto;width:100%}
+.portada-txt{display:grid;gap:clamp(14px,2.2vh,24px);justify-items:center;text-align:center;position:relative;z-index:2}
+h1{font-size:clamp(46px,1.6rem + 6.4vw,118px);color:var(--papel);letter-spacing:.01em;filter:var(--sombra)}
+h1 .nombre{display:block;color:var(--amarillo)}
+h1 .cumple{display:block;font-size:.5em;margin-top:.12em}
+.bajada{font-size:clamp(20px,1rem + 1vw,28px);font-weight:800;max-width:24ch}
+.arte-hero{position:relative;width:min(100%,520px);aspect-ratio:1;margin:0 auto}
+.arte-hero svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.cohete{animation:despegue 4.5s ease-in-out infinite alternate;transform-origin:50% 60%}
+@keyframes despegue{to{transform:translate(6px,-14px) rotate(3deg)}}
+.llama{animation:llama .25s steps(2) infinite alternate;transform-origin:50% 0;transform-box:fill-box}
+@keyframes llama{to{transform:scaleY(1.18) scaleX(.92)}}
+.planeta9{animation:orbita 9s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+@keyframes orbita{to{transform:translateY(10px) rotate(-4deg)}}
+.titila{animation:titila 2.4s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+.titila.b{animation-delay:-1.2s}.titila.c{animation-delay:-.6s;animation-duration:3s}
+@keyframes titila{to{transform:scale(.72) rotate(20deg)}}
+.bajar{display:inline-flex;align-items:center;gap:8px;color:var(--papel);text-decoration:none;font-weight:800;font-size:var(--fs-label)}
+.bajar svg{animation:bote 1.8s ease-in-out infinite}
+@keyframes bote{50%{transform:translateY(5px)}}
+
+/* bordes rasgados entre secciones */
+.rasgado{display:block;width:100%;height:clamp(50px,7vw,100px);margin-top:-1px;position:relative;z-index:3}
+
+/* ---------- Cuenta regresiva ---------- */
+.cuenta{background:var(--cielo3);padding:clamp(30px,6vw,70px) var(--gutter) clamp(40px,6vw,80px);text-align:center;position:relative}
+.cuenta .inner{display:grid;gap:clamp(20px,3.5vw,36px);justify-items:center;max-width:64rem;margin:0 auto}
+.cuenta h2{font-size:var(--fs-h2)}
+.reloj{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(12px,2.6vw,32px)}
+.pieza{position:relative;display:grid;place-content:center;justify-items:center;gap:4px;width:clamp(124px,15vw,170px);aspect-ratio:1/1.08;max-width:100%;color:var(--tinta);filter:var(--sombra)}
+.pieza::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--c,var(--papel));clip-path:polygon(4% 3%,96% 0,100% 94%,92% 100%,2% 97%,0 8%)}
+.pieza:nth-child(1){--c:var(--amarillo);transform:rotate(-3deg)}
+.pieza:nth-child(2){--c:var(--papel);transform:rotate(2deg)}
+.pieza:nth-child(3){--c:var(--menta);transform:rotate(-1.5deg)}
+.pieza:nth-child(4){--c:var(--naranja);transform:rotate(3deg)}
+.num{font-family:var(--display);font-size:clamp(44px,1.4rem + 3.4vw,74px);line-height:1;font-variant-numeric:tabular-nums}
+.lbl{font-weight:900;font-size:var(--fs-label);letter-spacing:.12em;text-transform:uppercase}
+.cuenta-nota{font-weight:800;font-size:clamp(19px,1rem + .6vw,24px)}
+
+/* ---------- Pase de abordar ---------- */
+.mision{background:var(--cielo2);padding:clamp(36px,6vw,80px) var(--gutter) clamp(50px,7vw,90px);position:relative;overflow:hidden;isolation:isolate}
+.mision .deco{position:absolute;z-index:-1;pointer-events:none}
+.mision .deco.luna{width:clamp(110px,16vw,200px);right:-3%;top:6%}
+.mision .deco.astro{width:clamp(70px,9vw,120px);left:2%;bottom:6%;animation:flota 7s ease-in-out infinite alternate}
+@keyframes flota{to{transform:translate(10px,-16px) rotate(14deg)}}
+.mis-wrap{max-width:64rem;margin:0 auto;display:grid;gap:clamp(24px,4vw,40px);justify-items:center;text-align:center}
+.mision h2{font-size:var(--fs-h2)}
+.pase{width:100%;max-width:58rem;display:grid;grid-template-columns:1fr;color:var(--tinta);text-align:left;filter:var(--sombra);transform:rotate(-1deg)}
+.pase-main,.pase-talon{background:var(--papel);position:relative}
+.pase-main{padding:clamp(20px,3.5vw,36px);display:grid;gap:clamp(16px,2.6vw,26px);clip-path:polygon(0 1%,100% 0,100% 100%,1% 99%)}
+.pase-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;border-bottom:3px dashed color-mix(in srgb,var(--tinta) 25%,transparent);padding-bottom:14px}
+.pase-top b{font-family:var(--display);font-weight:400;font-size:clamp(20px,1rem + 1vw,28px);color:var(--rojo)}
+.ruta{display:flex;align-items:center;gap:clamp(10px,2vw,20px);flex-wrap:wrap}
+.ruta .cod{font-family:var(--display);font-size:clamp(34px,1.2rem + 3vw,60px);line-height:1}
+.ruta .cod small{display:block;font-family:var(--texto);font-weight:800;font-size:var(--fs-label);letter-spacing:.06em;color:color-mix(in srgb,var(--tinta) 65%,transparent);margin-top:4px}
+.ruta svg{width:clamp(44px,7vw,70px);flex:none}
+.campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:clamp(14px,2.4vw,24px)}
+.campo{min-width:0}
+.campo span{display:block;font-weight:900;font-size:var(--fs-label);letter-spacing:.12em;text-transform:uppercase;color:var(--rojo)}
+.campo p{font-weight:800;font-size:clamp(18px,1rem + .4vw,22px);line-height:1.3}
+.enlace{color:var(--cielo3);font-weight:900;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.pase-talon{padding:clamp(18px,3vw,28px);display:grid;gap:12px;align-content:center;justify-items:center;background:var(--amarillo);clip-path:polygon(0 0,100% 1%,99% 100%,0 100%)}
+.pase-talon .asiento{font-family:var(--display);font-size:clamp(40px,1.4rem + 3vw,64px);line-height:1}
+.barras{width:100%;max-width:220px;height:56px;background:repeating-linear-gradient(90deg,var(--tinta) 0 3px,transparent 3px 5px,var(--tinta) 5px 6px,transparent 6px 9px,var(--tinta) 9px 13px,transparent 13px 15px)}
+.talon-lbl{font-weight:900;font-size:var(--fs-label);letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- Equipo / qué traer ---------- */
+.traer{background:var(--cielo3);padding:clamp(36px,6vw,80px) var(--gutter);text-align:center}
+.traer-wrap{max-width:64rem;margin:0 auto;display:grid;gap:clamp(24px,4vw,40px);justify-items:center}
+.traer h2{font-size:var(--fs-h2)}
+.items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:clamp(22px,4vw,44px);width:100%}
+.items li{display:grid;gap:10px;justify-items:center;align-content:start;min-width:0}
+.items svg{width:clamp(80px,10vw,110px);height:auto;overflow:visible}
+.items h3{font-size:clamp(22px,1rem + 1vw,30px);color:var(--amarillo)}
+.items p{max-width:20rem}
+
+/* ---------- Confirmar ---------- */
+.confirmar{position:relative;padding:clamp(40px,7vw,90px) var(--gutter) clamp(170px,22vw,260px);text-align:center;overflow:hidden;isolation:isolate}
+.suelo{position:absolute;left:0;right:0;bottom:0;width:100%;height:clamp(150px,20vw,240px);z-index:-1}
+.conf-wrap{max-width:40rem;margin:0 auto;display:grid;gap:clamp(16px,3vw,26px);justify-items:center}
+.confirmar h2{font-size:var(--fs-h2)}
+.tel{font-family:var(--display);font-size:clamp(28px,1rem + 2vw,42px);color:var(--amarillo);user-select:all;font-variant-numeric:tabular-nums;filter:var(--sombra-s)}
+.acciones{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.btn{font:inherit;font-weight:900;font-size:var(--fs-label);letter-spacing:.04em;cursor:pointer;border:0;padding:14px 24px;color:var(--tinta);background:var(--amarillo);text-decoration:none;filter:var(--sombra-s);clip-path:polygon(3% 0,100% 6%,97% 100%,0 92%);transition:transform .2s}
+.btn:hover{transform:translateY(-3px) rotate(-1deg)}
+.btn.rojo{background:var(--rojo);color:var(--papel)}
+.btn:focus-visible,.bajar:focus-visible,.enlace:focus-visible{outline:3px solid var(--amarillo);outline-offset:4px}
+.aviso{font-weight:800;font-size:var(--fs-label);min-height:1.6em;color:var(--amarillo)}
+.firma{font-weight:800}
+
+/* ---------- Cartulina detrás de las letras ---------- */
+.carton{position:relative;display:inline-block;padding:.04em .22em .02em;z-index:0;color:var(--ct,var(--papel));filter:var(--sombra-s)}
+.carton::before{content:"";position:absolute;inset:-.02em -.04em;z-index:-1;background:var(--cc,var(--rojo));
+  clip-path:polygon(1% 14%,9% 3%,31% 7%,54% 0,77% 6%,99% 2%,97% 42%,100% 86%,81% 97%,53% 100%,27% 93%,4% 99%,0 58%);
+  transform:rotate(var(--rot,-2deg));animation:carton 3.6s ease-in-out infinite alternate}
+@keyframes carton{to{transform:rotate(calc(var(--rot,-2deg) * -0.6)) scale(1.02)}}
+.carton.am{--cc:var(--amarillo);--ct:var(--tinta);--rot:2deg}
+.carton.me{--cc:var(--menta);--ct:var(--tinta);--rot:-1.5deg}
+.carton.na{--cc:var(--naranja);--ct:var(--tinta);--rot:1.5deg}
+.carton.li{--cc:var(--lila);--ct:var(--tinta);--rot:-2.5deg}
+h1 .nombre .carton{--ct:var(--amarillo)}
+
+/* ---------- Recortes en palito ---------- */
+.palito{position:absolute;bottom:0;display:grid;justify-items:center;transform-origin:50% 100%;animation:mece var(--t,3.4s) ease-in-out infinite alternate;z-index:1;pointer-events:auto}
+.palito:nth-of-type(even){animation-direction:alternate-reverse}
+.palito svg{width:var(--w,clamp(78px,9vw,130px));height:auto;overflow:visible;filter:var(--sombra)}
+.palito .palo{width:clamp(9px,.9vw,13px);height:var(--largo,clamp(110px,13vw,190px));margin-top:-8px;border-radius:2px 2px 7px 7px;
+  background:linear-gradient(90deg,#B98547,#E7C08A 45%,#C99858);filter:var(--sombra-s)}
+.palito:hover{animation-duration:.6s}
+@keyframes mece{from{transform:rotate(calc(var(--g,6deg) * -1))}to{transform:rotate(var(--g,6deg)) translateY(-6px)}}
+
+/* ---------- Globos, confeti y recortes sueltos ---------- */
+.suelto{position:absolute;pointer-events:none;overflow:visible;filter:var(--sombra);z-index:0}
+.globo{animation:globo var(--t,6s) ease-in-out infinite alternate;transform-origin:50% 100%}
+@keyframes globo{from{transform:translateY(0) rotate(-4deg)}to{transform:translateY(-18px) rotate(4deg)}}
+.gira{animation:gira var(--t,10s) ease-in-out infinite alternate}
+@keyframes gira{to{transform:rotate(14deg) translate(6px,-10px)}}
+.cometa{animation:cometa 9s linear infinite}
+@keyframes cometa{0%{transform:translate(0,0)}100%{transform:translate(-30vw,18vh)}}
+.confeti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.confeti i{position:absolute;width:var(--s);height:calc(var(--s) * .55);background:var(--c);filter:var(--sombra-s);
+  clip-path:polygon(0 10%,100% 0,94% 100%,6% 88%);animation:confeti var(--t) ease-in-out var(--del) infinite alternate}
+.confeti i.tri{height:var(--s);clip-path:polygon(50% 0,100% 100%,0 92%)}
+@keyframes confeti{from{transform:rotate(var(--r)) translateY(0)}to{transform:rotate(calc(var(--r) + 140deg)) translateY(-14px)}}
+.confirmar .palito{z-index:-1}
+.confirmar .palito .palo{--largo:clamp(190px,24vw,300px)!important}
+.portada .palito svg{--w:clamp(96px,11vw,150px)}
+.cuenta,.traer{position:relative;overflow:hidden;isolation:isolate}
+.cuenta .inner,.traer-wrap,.conf-wrap,.mis-wrap{position:relative;z-index:2}
+
+/* ---------- Bitácora (fotos) ---------- */
+.bitacora{background:var(--cielo3);padding:0 var(--gutter) clamp(50px,7vw,90px);position:relative;overflow:hidden;isolation:isolate}
+.bit-wrap{max-width:68rem;margin:0 auto;display:grid;gap:clamp(28px,4vw,44px);justify-items:center;text-align:center;position:relative;z-index:2}
+.bitacora h2{font-size:var(--fs-h2)}
+.fotos{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:clamp(28px,4vw,52px)}
+.foto-p{margin:0;background:var(--papel);padding:10px 10px 0;filter:var(--sombra);width:clamp(230px,26vw,310px);max-width:100%;position:relative;animation:balanceo var(--t,5s) ease-in-out infinite alternate;transform-origin:50% 0}
+.foto-p img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.foto-p figcaption{font-family:var(--display);color:var(--tinta);font-size:clamp(18px,1rem + .5vw,22px);padding:8px 0 10px;text-align:center}
+.foto-p .cinta{position:absolute;top:-14px;left:50%;width:96px;height:28px;translate:-50% 0;rotate:-5deg;background:color-mix(in srgb,var(--cc,var(--amarillo)) 78%,transparent);clip-path:polygon(3% 0,97% 6%,100% 100%,0 94%)}
+@keyframes balanceo{from{rotate:var(--a,-3deg)}to{rotate:calc(var(--a,-3deg) * -0.4) ;translate:0 -6px}}
+.fotos .palito{position:relative;bottom:auto;--g:4deg}
+.fotos .palito .foto-p{animation:none;width:clamp(200px,22vw,260px)}
+.fotos .palito .foto-p img{aspect-ratio:3/4;object-position:50% 30%}
+
+@media (min-width:860px){
+  .portada-grid{grid-template-columns:1.05fr 1fr}
+  .portada-txt{justify-items:start;text-align:left}
+  .pase{grid-template-columns:1fr minmax(12rem,15rem)}
+}
+@media (orientation:landscape) and (max-height:560px){
+  .portada{min-height:auto;padding-block:28px 130px}
+  .portada-grid{grid-template-columns:1.1fr .9fr}
+  .portada-txt{justify-items:start;text-align:left}
+  h1{font-size:clamp(40px,12vh,72px)}
+  .arte-hero{width:min(100%,62vh)}
+  .reloj{flex-wrap:nowrap}
+  .pieza{width:clamp(96px,22vh,130px)}
+  .pase{grid-template-columns:1fr 13rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- piezas de papel reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="borde" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" result="r"/>
+      <feDisplacementMap in="SourceGraphic" in2="r" scale="2.4"/>
+    </filter>
+    <path id="estrella" d="M0,-10 L2.6,-3.2 L9.8,-3 L4.1,1.5 L6.1,8.6 L0,4.6 L-6.1,8.6 L-4.1,1.5 L-9.8,-3 L-2.6,-3.2 Z"/>
+    <path id="chispa" d="M0,-10 C1,-3 3,-1 10,0 C3,1 1,3 0,10 C-1,3 -3,1 -10,0 C-3,-1 -1,-3 0,-10 Z"/>
+  </defs>
+</svg>
+
+<header class="portada">
+  <svg class="cielo-art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="1440" height="900" fill="#16204A"/>
+    <g filter="url(#borde)">
+      <circle class="capa" cx="1250" cy="160" r="230" fill="#1D2A5E"/>
+      <circle class="capa" cx="160" cy="720" r="300" fill="#1D2A5E"/>
+      <circle class="capa" cx="1300" cy="140" r="150" fill="#22306B"/>
+    </g>
+    <g fill="#F7CB4D" filter="url(#borde)">
+      <use href="#estrella" class="titila capa-s" transform="translate(120 120) scale(1.6)"/>
+      <use href="#chispa" class="titila b capa-s" transform="translate(640 80) scale(1.2)"/>
+      <use href="#estrella" class="titila c capa-s" transform="translate(1000 420) scale(1.1)"/>
+      <use href="#chispa" class="titila capa-s" transform="translate(320 360) scale(.9)"/>
+      <use href="#estrella" class="titila b capa-s" transform="translate(1380 520) scale(1.3)"/>
+      <use href="#chispa" class="titila c capa-s" transform="translate(860 620) scale(1)"/>
+    </g>
+    <g fill="#F5ECDC" opacity=".8">
+      <circle cx="420" cy="140" r="3"/><circle cx="520" cy="250" r="2"/><circle cx="900" cy="160" r="3"/><circle cx="1100" cy="300" r="2.5"/>
+      <circle cx="240" cy="520" r="2.5"/><circle cx="700" cy="480" r="2"/><circle cx="1200" cy="640" r="3"/><circle cx="60" cy="300" r="2"/>
+    </g>
+  </svg>
+
+  <div class="portada-grid">
+    <div class="portada-txt">
+      <span class="etiqueta">Misión cumpleaños</span>
+      <h1><span class="nombre"><span class="carton">Mateo</span></span><span class="cumple">cumple <span class="carton am">9</span></span></h1>
+      <p class="bajada">Prepárate para despegar con nosotros a celebrar en el espacio.</p>
+      <a class="bajar" href="#cuenta">Ver la misión
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+    </div>
+
+    <div class="arte-hero" aria-hidden="true">
+      <svg viewBox="0 0 500 500">
+        <g filter="url(#borde)">
+          <!-- planeta 9 con anillo -->
+          <g class="planeta9">
+            <ellipse class="capa-s" cx="330" cy="150" rx="150" ry="36" fill="#9B86E0" transform="rotate(-18 330 150)"/>
+            <circle class="capa" cx="330" cy="150" r="92" fill="#F39A3D"/>
+            <path class="capa-s" d="M246 118 C290 100 360 96 418 120 L422 140 C360 120 290 122 240 140 Z" fill="#E5533D"/>
+            <path class="capa-s" d="M240 172 C300 160 370 162 422 176 L414 196 C360 184 300 186 248 196 Z" fill="#F7CB4D"/>
+            <text x="330" y="186" text-anchor="middle" font-family="Bungee, Arial Black, sans-serif" font-size="110" fill="#F5ECDC" class="capa-s">9</text>
+            <path class="capa" d="M184 190 C250 222 400 190 476 116 C480 128 476 140 468 146 C396 210 250 240 178 204 Z" fill="#B6A6EC"/>
+          </g>
+          <!-- luna -->
+          <circle class="capa" cx="96" cy="96" r="58" fill="#F5ECDC"/>
+          <circle class="capa-s" cx="76" cy="84" r="14" fill="#E8DCC6"/>
+          <circle class="capa-s" cx="114" cy="112" r="9" fill="#E8DCC6"/>
+          <circle class="capa-s" cx="102" cy="70" r="6" fill="#E8DCC6"/>
+          <!-- cohete -->
+          <g class="cohete">
+            <g transform="translate(150 230) rotate(-28)">
+              <g class="llama">
+                <path class="capa" d="M40 205 C30 240 50 275 70 300 C90 275 110 240 100 205 Z" fill="#E5533D"/>
+                <path class="capa-s" d="M52 205 C46 232 58 255 70 272 C82 255 94 232 88 205 Z" fill="#F39A3D"/>
+                <path class="capa-s" d="M62 205 C60 222 64 236 70 246 C76 236 80 222 78 205 Z" fill="#F7CB4D"/>
+              </g>
+              <path class="capa" d="M8 150 L-28 205 L-24 222 L22 196 Z" fill="#E5533D"/>
+              <path class="capa" d="M132 150 L168 205 L164 222 L118 196 Z" fill="#E5533D"/>
+              <path class="capa" d="M70 0 C120 40 140 110 128 200 L12 200 C0 110 20 40 70 0 Z" fill="#F5ECDC"/>
+              <path class="capa-s" d="M70 0 C96 20 112 44 121 72 L19 72 C28 44 44 20 70 0 Z" fill="#E5533D"/>
+              <rect class="capa-s" x="18" y="176" width="104" height="26" rx="4" fill="#4C66C2"/>
+              <circle class="capa" cx="70" cy="118" r="30" fill="#22306B"/>
+              <circle class="capa-s" cx="70" cy="118" r="21" fill="#5EC4A8"/>
+              <path d="M58 106 C64 100 74 99 80 104" stroke="#F5ECDC" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path class="capa" d="M60 200 L80 200 L80 230 L60 230 Z" fill="#E5533D"/>
+            </g>
+          </g>
+          <!-- estrellas cercanas -->
+          <use href="#estrella" class="titila capa-s" fill="#F7CB4D" transform="translate(440 300) scale(2)"/>
+          <use href="#chispa" class="titila b capa-s" fill="#5EC4A8" transform="translate(70 360) scale(1.6)"/>
+          <use href="#estrella" class="titila c capa-s" fill="#F39A3D" transform="translate(470 440) scale(1.2)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- cometa -->
+  <svg class="suelto cometa" viewBox="0 0 160 60" aria-hidden="true" style="width:clamp(110px,12vw,170px);right:-8%;top:14%">
+    <g filter="url(#borde)"><path d="M150 30 L20 14 L40 30 L20 46 Z" fill="#F39A3D"/><path d="M150 30 L60 22 L72 30 L60 38 Z" fill="#F7CB4D"/><circle cx="148" cy="30" r="16" fill="#F5ECDC"/></g>
+  </svg>
+
+  <!-- títeres en palito -->
+  <div class="palito" style="left:4%;--t:3.2s;--g:7deg" aria-hidden="true">
+    <svg viewBox="0 0 120 120"><g filter="url(#borde)">
+      <path d="M38 30 L26 4" stroke="#5EC4A8" stroke-width="5" stroke-linecap="round"/><path d="M82 30 L94 4" stroke="#5EC4A8" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="26" cy="6" r="8" fill="#F7CB4D"/><circle cx="94" cy="6" r="8" fill="#F7CB4D"/>
+      <ellipse cx="60" cy="66" rx="50" ry="48" fill="#5EC4A8"/>
+      <ellipse cx="42" cy="60" rx="15" ry="19" fill="#16204A"/><ellipse cx="78" cy="60" rx="15" ry="19" fill="#16204A"/>
+      <circle cx="46" cy="54" r="5" fill="#F5ECDC"/><circle cx="82" cy="54" r="5" fill="#F5ECDC"/>
+      <path d="M44 92 C54 100 66 100 76 92" stroke="#16204A" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </g></svg>
+    <span class="palo"></span>
+  </div>
+  <div class="palito" style="left:40%;--t:2.8s;--g:5deg;--w:clamp(90px,10vw,150px)" aria-hidden="true">
+    <svg viewBox="0 0 140 110"><g filter="url(#borde)">
+      <path d="M70 2 L84 30 L116 22 L102 50 L136 62 L102 74 L114 104 L82 92 L70 108 L58 92 L26 104 L38 74 L4 62 L38 50 L24 22 L56 30 Z" fill="#E5533D"/>
+      <text x="70" y="74" text-anchor="middle" font-family="Bungee, Arial Black, sans-serif" font-size="38" fill="#F7CB4D">¡9!</text>
+    </g></svg>
+    <span class="palo" style="--largo:clamp(120px,15vw,210px)"></span>
+  </div>
+  <div class="palito" style="right:6%;--t:3.8s;--g:8deg;--w:clamp(100px,11vw,160px)" aria-hidden="true">
+    <svg viewBox="0 0 160 110"><g filter="url(#borde)">
+      <path d="M58 70 L30 108 L130 108 L102 70 Z" fill="#F7CB4D" opacity=".55"/>
+      <path d="M44 46 C44 20 116 20 116 46 Z" fill="#5EC4A8"/>
+      <ellipse cx="80" cy="56" rx="76" ry="20" fill="#9B86E0"/>
+      <ellipse cx="80" cy="50" rx="56" ry="10" fill="#B6A6EC"/>
+      <circle cx="34" cy="60" r="6" fill="#F7CB4D"/><circle cx="62" cy="66" r="6" fill="#F39A3D"/><circle cx="98" cy="66" r="6" fill="#F7CB4D"/><circle cx="126" cy="60" r="6" fill="#F39A3D"/>
+    </g></svg>
+    <span class="palo"></span>
+  </div>
+</header>
+
+<svg class="rasgado" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" style="margin-top:clamp(-140px,-14vw,-90px)">
+  <path class="capa" d="M0,60 L60,48 L110,62 L170,40 L230,58 L300,44 L350,60 L420,36 L480,54 L560,42 L610,58 L690,38 L760,56 L820,44 L900,62 L960,40 L1030,56 L1090,42 L1160,60 L1220,38 L1290,56 L1360,44 L1440,58 L1440,100 L0,100 Z" fill="#33479A" filter="url(#borde)"/>
+</svg>
+
+<section class="cuenta" id="cuenta">
+  <div class="confeti" data-confeti="14"></div>
+  <svg class="suelto globo" viewBox="0 0 60 130" aria-hidden="true" style="width:clamp(50px,6vw,80px);left:3%;top:12%;--t:5s" data-par=".08"><g filter="url(#borde)"><path d="M30 76 C26 96 36 110 30 128" stroke="#F5ECDC" stroke-width="2" fill="none"/><ellipse cx="30" cy="38" rx="27" ry="34" fill="#E5533D"/><path d="M24 72 L36 72 L30 80 Z" fill="#E5533D"/><ellipse cx="20" cy="24" rx="5" ry="9" fill="#F5ECDC" opacity=".5"/></g></svg>
+  <svg class="suelto globo" viewBox="0 0 60 130" aria-hidden="true" style="width:clamp(44px,5vw,70px);left:9%;top:34%;--t:6.5s" data-par=".14"><g filter="url(#borde)"><path d="M30 76 C34 96 24 110 30 128" stroke="#F5ECDC" stroke-width="2" fill="none"/><ellipse cx="30" cy="38" rx="27" ry="34" fill="#F7CB4D"/><path d="M24 72 L36 72 L30 80 Z" fill="#F7CB4D"/></g></svg>
+  <svg class="suelto globo" viewBox="0 0 60 130" aria-hidden="true" style="width:clamp(50px,6vw,80px);right:4%;top:20%;--t:5.6s" data-par=".1"><g filter="url(#borde)"><path d="M30 76 C26 96 36 110 30 128" stroke="#F5ECDC" stroke-width="2" fill="none"/><ellipse cx="30" cy="38" rx="27" ry="34" fill="#5EC4A8"/><path d="M24 72 L36 72 L30 80 Z" fill="#5EC4A8"/><ellipse cx="20" cy="24" rx="5" ry="9" fill="#F5ECDC" opacity=".5"/></g></svg>
+  <div class="inner">
+    <span class="etiqueta">Cuenta regresiva</span>
+    <h2><span class="carton li">Despegamos</span> en</h2>
+    <div class="reloj" role="timer" aria-live="off">
+      <div class="pieza"><span class="num" id="d">00</span><span class="lbl">días</span></div>
+      <div class="pieza"><span class="num" id="h">00</span><span class="lbl">horas</span></div>
+      <div class="pieza"><span class="num" id="m">00</span><span class="lbl">minutos</span></div>
+      <div class="pieza"><span class="num" id="s">00</span><span class="lbl">segundos</span></div>
+    </div>
+    <p class="cuenta-nota" id="cuentaNota">Ajústate el casco, que falta poco.</p>
+  </div>
+</section>
+
+<section class="bitacora" id="bitacora">
+  <div class="confeti" data-confeti="10"></div>
+  <div class="bit-wrap">
+    <span class="etiqueta">Bitácora</span>
+    <h2>Entrenamiento de <span class="carton am">astronauta</span></h2>
+    <div class="fotos">
+      <figure class="foto-p" style="--a:-4deg;--t:5.5s"><span class="cinta"></span><img src="fotos/despegue.jpg" alt="Cohete despegando entre nubes de humo" loading="lazy"><figcaption>Despegue</figcaption></figure>
+      <div class="palito" style="--t:3.4s">
+        <figure class="foto-p"><span class="cinta" style="--cc:var(--menta)"></span><img src="fotos/astronauta.jpg" alt="Niño con traje de astronauta sosteniendo su casco" loading="lazy"><figcaption>Piloto</figcaption></figure>
+        <span class="palo" style="--largo:clamp(80px,9vw,130px)"></span>
+      </div>
+      <figure class="foto-p" style="--a:3.5deg;--t:6s"><span class="cinta" style="--cc:var(--naranja)"></span><img src="fotos/estela.jpg" alt="Estela de un cohete subiendo al atardecer" loading="lazy"><figcaption>Rumbo al planeta 9</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<svg class="rasgado" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" style="background:#33479A">
+  <path class="capa" d="M0,52 L70,38 L130,56 L200,34 L260,52 L330,40 L400,58 L460,36 L540,50 L600,34 L670,54 L740,42 L810,60 L880,38 L940,54 L1010,40 L1080,58 L1150,36 L1210,52 L1290,40 L1360,56 L1440,42 L1440,100 L0,100 Z" fill="#22306B" filter="url(#borde)"/>
+</svg>
+
+<section class="mision" id="mision">
+  <svg class="deco luna" viewBox="0 0 200 200" aria-hidden="true"><g filter="url(#borde)"><circle class="capa" cx="100" cy="100" r="80" fill="#4C66C2"/><circle class="capa-s" cx="70" cy="80" r="18" fill="#33479A"/><circle class="capa-s" cx="125" cy="125" r="12" fill="#33479A"/><circle class="capa-s" cx="120" cy="66" r="8" fill="#33479A"/></g></svg>
+  <svg class="deco astro" viewBox="0 0 120 120" aria-hidden="true"><g filter="url(#borde)"><circle class="capa" cx="60" cy="60" r="34" fill="#E5533D"/><path class="capa-s" d="M10 70 C40 50 80 50 112 64 L108 74 C80 62 40 62 14 80 Z" fill="#F7CB4D"/></g></svg>
+  <div class="mis-wrap">
+    <span class="etiqueta">Datos de la misión</span>
+    <h2>Tu pase de <span class="carton me">abordar</span></h2>
+    <div class="pase">
+      <div class="pase-main">
+        <div class="pase-top"><b>Vuelo M-09</b><span class="talon-lbl">Pasajero: tú y tu familia</span></div>
+        <div class="ruta">
+          <div class="cod">TGU<small>La Tierra</small></div>
+          <svg viewBox="0 0 70 40" aria-hidden="true"><path d="M2 20 H50" stroke="#16204A" stroke-width="4" stroke-dasharray="6 6"/><path d="M50 8 L68 20 L50 32 Z" fill="#E5533D"/></svg>
+          <div class="cod">P-9<small>Planeta 9</small></div>
+        </div>
+        <div class="campos">
+          <div class="campo"><span>Fecha</span><p>Sábado 5 de diciembre de 2026</p></div>
+          <div class="campo"><span>Despegue</span><p>3:00 p. m.<br>Aterrizaje 7:00 p. m.</p></div>
+          <div class="campo"><span>Base de lanzamiento</span><p>Salón Galaxia, colonia Palmira, Tegucigalpa<br><a class="enlace" href="https://maps.google.com/?q=Tegucigalpa" target="_blank" rel="noopener">Abrir en el mapa</a></p></div>
+          <div class="campo"><span>Uniforme</span><p>Ven de astronauta, de alien o como quieras explorar el espacio.</p></div>
+        </div>
+      </div>
+      <div class="pase-talon">
+        <span class="talon-lbl">Asiento</span>
+        <span class="asiento">9A</span>
+        <div class="barras" aria-hidden="true"></div>
+        <span class="talon-lbl">Puerta 9</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="rasgado" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" style="background:#22306B">
+  <path class="capa" d="M0,44 L80,58 L140,38 L210,56 L270,42 L350,60 L420,40 L480,56 L560,36 L620,54 L700,42 L770,58 L840,36 L900,52 L980,40 L1040,58 L1120,42 L1180,56 L1260,36 L1320,54 L1390,42 L1440,52 L1440,100 L0,100 Z" fill="#33479A" filter="url(#borde)"/>
+</svg>
+
+<section class="traer" id="traer">
+  <div class="confeti" data-confeti="16"></div>
+  <svg class="suelto gira" viewBox="0 0 80 100" aria-hidden="true" style="width:clamp(56px,7vw,96px);right:5%;top:8%;--t:7s" data-par=".12"><g filter="url(#borde)"><path d="M40 6 L74 94 L6 94 Z" fill="#9B86E0"/><path d="M28 36 L52 36 L58 52 L22 52 Z" fill="#F7CB4D"/><path d="M17 66 L63 66 L68 80 L12 80 Z" fill="#E5533D"/><circle cx="40" cy="8" r="9" fill="#F39A3D"/></g></svg>
+  <svg class="suelto gira" viewBox="0 0 100 100" aria-hidden="true" style="width:clamp(60px,7vw,100px);left:3%;bottom:10%;--t:9s" data-par=".08"><g filter="url(#borde)"><rect x="40" y="20" width="22" height="60" rx="3" fill="#F5ECDC" transform="rotate(-30 50 50)"/><rect x="10" y="38" width="80" height="22" rx="3" fill="#4C66C2" transform="rotate(-30 50 50)"/><circle cx="50" cy="50" r="12" fill="#E5533D"/></g></svg>
+  <div class="traer-wrap">
+    <span class="etiqueta">Equipaje</span>
+    <h2>Qué <span class="carton na">llevar</span></h2>
+    <ul class="items">
+      <li>
+        <svg viewBox="0 0 100 100" aria-hidden="true"><g filter="url(#borde)"><rect class="capa" x="14" y="34" width="72" height="56" rx="4" fill="#E5533D"/><rect class="capa-s" x="44" y="34" width="12" height="56" fill="#F7CB4D"/><rect class="capa-s" x="10" y="26" width="80" height="16" rx="3" fill="#F39A3D"/><path class="capa-s" d="M50 26 C40 6 22 10 30 22 C36 28 46 26 50 26 C54 26 64 28 70 22 C78 10 60 6 50 26 Z" fill="#F7CB4D"/></g></svg>
+        <h3>Regalo</h3>
+        <p>A Mateo le encantan los Legos, los libros del espacio y todo lo que tenga cohetes.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 100 100" aria-hidden="true"><g filter="url(#borde)"><circle class="capa" cx="50" cy="52" r="38" fill="#F5ECDC"/><rect class="capa-s" x="24" y="36" width="52" height="34" rx="16" fill="#22306B"/><path d="M34 46 C40 41 48 41 54 44" stroke="#5EC4A8" stroke-width="5" fill="none" stroke-linecap="round"/><rect class="capa-s" x="40" y="86" width="20" height="10" fill="#9B86E0"/></g></svg>
+        <h3>Disfraz</h3>
+        <p>Casco, traje espacial o antenas de alien. Habrá premio al mejor disfraz.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 100 100" aria-hidden="true"><g filter="url(#borde)"><path class="capa" d="M50 8 L62 36 L92 38 L68 58 L76 88 L50 72 L24 88 L32 58 L8 38 L38 36 Z" fill="#F7CB4D"/><circle class="capa-s" cx="50" cy="52" r="12" fill="#F39A3D"/></g></svg>
+        <h3>Muchas ganas</h3>
+        <p>Habrá juegos de astronautas, piñata en forma de cohete y pastel de planetas.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<svg class="rasgado" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" style="background:#33479A">
+  <path class="capa" d="M0,56 L60,40 L130,58 L190,36 L260,54 L320,42 L400,60 L470,38 L530,56 L610,40 L670,58 L750,36 L810,52 L880,42 L950,60 L1010,38 L1090,56 L1150,40 L1220,58 L1290,36 L1360,52 L1440,44 L1440,100 L0,100 Z" fill="#16204A" filter="url(#borde)"/>
+</svg>
+
+<section class="confirmar" id="confirmar">
+  <div class="conf-wrap">
+    <span class="etiqueta">Confirma tu lugar</span>
+    <h2>¿Vienes <span class="carton">a bordo</span>?</h2>
+    <p>Avísanos antes del 28 de noviembre para guardarte un asiento en el cohete.</p>
+    <p class="tel" id="tel">+504 9999-9999</p>
+    <div class="acciones">
+      <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+      <button class="btn rojo" type="button" id="copiar">Copiar número</button>
+    </div>
+    <p class="aviso" id="aviso" role="status"></p>
+    <p class="firma">Te esperamos, la familia de Mateo</p>
+  </div>
+  <div class="palito" style="left:6%;--t:3s;--g:6deg;--w:clamp(90px,10vw,140px)" aria-hidden="true">
+    <svg viewBox="0 0 140 130"><g filter="url(#borde)">
+      <path d="M70 8 C64 18 64 24 70 28 C76 24 76 18 70 8 Z" fill="#F7CB4D"/><rect x="66" y="28" width="8" height="22" fill="#F5ECDC"/>
+      <rect x="34" y="50" width="72" height="34" rx="6" fill="#F39A3D"/><path d="M34 60 C46 70 58 56 70 66 C82 56 94 70 106 60 L106 54 L34 54 Z" fill="#F5ECDC"/>
+      <rect x="14" y="84" width="112" height="42" rx="6" fill="#E5533D"/><path d="M14 94 C30 106 46 90 62 102 C78 90 94 106 110 94 L126 98 L126 88 L14 88 Z" fill="#F5ECDC"/>
+      <circle cx="40" cy="112" r="5" fill="#F7CB4D"/><circle cx="70" cy="114" r="5" fill="#5EC4A8"/><circle cx="100" cy="112" r="5" fill="#F7CB4D"/>
+    </g></svg>
+    <span class="palo" style="--largo:clamp(130px,16vw,220px)"></span>
+  </div>
+  <div class="palito" style="right:7%;--t:3.6s;--g:7deg;--w:clamp(80px,9vw,120px)" aria-hidden="true">
+    <svg viewBox="0 0 120 130"><g filter="url(#borde)">
+      <circle cx="60" cy="60" r="54" fill="#F5ECDC"/><rect x="26" y="40" width="68" height="44" rx="22" fill="#22306B"/>
+      <path d="M40 52 C48 46 60 46 68 50" stroke="#5EC4A8" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="104" cy="60" r="8" fill="#E5533D"/><circle cx="16" cy="60" r="8" fill="#E5533D"/><rect x="44" y="110" width="32" height="16" fill="#9B86E0"/>
+    </g></svg>
+    <span class="palo"></span>
+  </div>
+  <svg class="suelo" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true">
+    <g filter="url(#borde)">
+      <path class="capa" d="M0,120 C200,60 380,110 560,80 C760,46 900,120 1100,84 C1260,56 1360,90 1440,70 L1440,240 L0,240 Z" fill="#4C66C2"/>
+      <path class="capa" d="M0,160 C180,120 360,170 600,140 C820,110 980,170 1200,140 C1320,124 1400,140 1440,130 L1440,240 L0,240 Z" fill="#9B86E0"/>
+      <ellipse class="capa-s" cx="300" cy="190" rx="60" ry="14" fill="#7E6BC9"/>
+      <ellipse class="capa-s" cx="1050" cy="200" rx="80" ry="16" fill="#7E6BC9"/>
+      <ellipse class="capa-s" cx="720" cy="215" rx="40" ry="9" fill="#7E6BC9"/>
+    </g>
+  </svg>
+</section>
+
+<script>
+const EVENTO = {
+  nombre: 'Mateo',
+  inicio: '2026-12-05T15:00:00-06:00',
+  telefono: '+504 9999-9999'
+};
+const $ = id => document.getElementById(id);
+const meta = new Date(EVENTO.inicio).getTime();
+const dos = n => String(n).padStart(2, '0');
+function tic(){
+  let t = Math.max(0, meta - Date.now());
+  const d = Math.floor(t / 864e5); t -= d * 864e5;
+  const h = Math.floor(t / 36e5);  t -= h * 36e5;
+  const m = Math.floor(t / 6e4);   t -= m * 6e4;
+  $('d').textContent = dos(d); $('h').textContent = dos(h);
+  $('m').textContent = dos(m); $('s').textContent = dos(Math.floor(t / 1e3));
+  if (meta - Date.now() <= 0) $('cuentaNota').textContent = '¡Despegamos hoy!';
+}
+tic(); setInterval(tic, 1000);
+$('wa').href = 'https://wa.me/' + EVENTO.telefono.replace(/\D/g, '') + '?text=' +
+  encodeURIComponent('¡Hola! Confirmo que vamos al cumple de ' + EVENTO.nombre + ' 🚀');
+$('copiar').addEventListener('click', () => {
+  const ok = () => $('aviso').textContent = 'Número copiado: ' + EVENTO.telefono;
+  const no = () => $('aviso').textContent = 'Copia este número: ' + EVENTO.telefono;
+  try { navigator.clipboard.writeText(EVENTO.telefono).then(ok, no); } catch (e) { no(); }
+});
+/* confeti de papel */
+const colores = ['#E5533D','#F39A3D','#F7CB4D','#5EC4A8','#9B86E0','#F5ECDC'];
+document.querySelectorAll('[data-confeti]').forEach(c => {
+  for (let i = 0; i < +c.dataset.confeti; i++) {
+    const p = document.createElement('i');
+    if (Math.random() < .35) p.className = 'tri';
+    p.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--s:${10+Math.random()*14}px;--c:${colores[i%colores.length]};--r:${Math.random()*360}deg;--t:${3+Math.random()*4}s;--del:${-Math.random()*5}s`;
+    c.appendChild(p);
+  }
+});
+/* parallax suave */
+const par = [...document.querySelectorAll('[data-par]')];
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches && par.length) {
+  let pend = false;
+  const mover = () => { pend = false; par.forEach(el => { const r = el.parentElement.getBoundingClientRect(); el.style.translate = `0 ${(r.top) * -el.dataset.par}px`; }); };
+  addEventListener('scroll', () => { if (!pend) { pend = true; requestAnimationFrame(mover); } }, { passive: true });
+  mover();
+}
+</script>
+</body>
+</html>
